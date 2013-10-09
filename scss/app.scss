@@ -1,0 +1,188 @@
+@import "compass";
+
+* { padding: 0; margin: 0; }
+
+/* --- Typography ------------------------------- */
+body { font: 100%/1.5em Verdana, Arial, sans-serif; }
+p { padding-bottom: 1.5em; }
+h1, h2, h3, h4, h5, h6 { padding-bottom: 1em; }
+
+/* --- Layout ------------------------------- */
+.wrapper { width: 900px; margin: 0 auto; }
+
+#page {
+	font-size: 0.9em; 
+	border-top: 20px solid #cac4bb;
+	
+}
+
+#main {
+	clear: both; 
+	padding-top: 2em; 
+}
+
+#footer {
+	border-top: 4px solid #aca297; 
+	background: #cac4bb;
+	color: #FFF; 
+	
+	p { padding-top: 1.5em; }
+}
+
+/* --- Header ------------------------------- */
+$menuHeight: 40px;
+$shadowOffset: 4px;
+$linkSideSpacing: 20px;
+
+#header { 
+	border-top: 4px solid #aca297; 
+	padding: 30px 0 0 0; 
+	
+	&, h1, nav { height: $menuHeight+$shadowOffset; }
+	h1, nav { float: left; }
+	
+	h1 { width: 20%; }
+	nav { width: 80%; }
+
+	h1 { font-weight: normal; font-size: 1.2em; }
+
+	nav ul ul {
+		display: none;
+		width: 200px; 
+		position: absolute;
+		top: $menuHeight + $shadowOffset; 
+		left: 0;
+		z-index: 40; 
+		background: #ded7cd; 
+		@include box-shadow( #cbc0b1 #{-$shadowOffset} $shadowOffset 0 );
+
+		&:before, &:after {
+			content: ' ';
+			width: 0;
+			height: 0;
+			position: absolute;
+		}
+
+		&:before {
+			border-bottom: $shadowOffset solid #cbc0b1;
+			border-left: $shadowOffset solid transparent;
+			top: 0; left: -$shadowOffset; 
+		}
+
+		&:after {
+			border-top: $shadowOffset solid #cbc0b1;
+			border-right: $shadowOffset solid transparent;
+			right: 0; bottom: -$shadowOffset; 
+		}
+
+		li { 
+			float: none; display: block; 
+
+			a { display: block; text-decoration: none; color: #e27841; padding: 0.5em 1em; }
+			a:hover { text-decoration: underline; }
+		}
+	}
+
+	nav > ul > li {
+		width: 100px; 
+		display: block; float: left; padding: 0 0 $shadowOffset $shadowOffset; position: relative; 
+
+		& > a {
+			display: block; padding: 0; color: #FFF; text-decoration: none; 
+			background: #cac4bb; position: relative; z-index: 20; text-align: center; 
+			text-transform: uppercase; line-height: $menuHeight;
+
+			@include box-shadow( #aca297 #{-$shadowOffset} $shadowOffset 0, #cac4bb 1px 0 0 inset );
+
+			&:before, &:after {
+				content: ' ';
+				width: 0;
+				height: 0;
+				position: absolute;
+			}
+
+			&:before {
+				border-bottom: $shadowOffset solid #aca297;
+				border-left: $shadowOffset solid transparent;
+				top: 0; left: -$shadowOffset; 
+			}
+
+			&:after {
+				border-top: $shadowOffset solid #aca297;
+				border-right: $shadowOffset solid transparent;
+				right: 0; bottom: -$shadowOffset; 
+			}
+		}
+
+		&:hover > a, & > a:hover, &.selected > a {
+			background: #c2bab0; 
+			z-index: 1; 
+			@include box-shadow( #aca297 #{-$shadowOffset} $shadowOffset 0, #aca297 1px 0 0 inset );
+
+			&:after { 
+				border: none;
+				width: $shadowOffset;
+				height: $menuHeight; 
+				background: #aca297; 
+				right: -$shadowOffset; 
+				top: -$shadowOffset/2;
+
+				@include skew(0, -50deg);
+			}
+		}
+		
+		&:hover > a, &.selected > a {
+			left: -$shadowOffset;
+			top: 2*$shadowOffset;
+		}
+
+		&.selected {
+			& {
+
+			}
+
+			& > a {
+				width: 100px + 7px; 
+				top: 3*$shadowOffset;
+				left: -3*$shadowOffset - 2;
+				background: #aca297; 
+				@include box-shadow( #c9c4bb -1px 0 0 inset );
+	
+				&:after {
+					background: #aca297; 
+					width: $shadowOffset + 3; 
+					right: -$shadowOffset - 3; 
+					top: -$shadowOffset;
+				}
+
+				&:before {
+					top: 26px;
+					left: -6px;
+					border: none;
+					border-left: 8px solid transparent;
+					border-right: 8px solid transparent;
+					border-bottom: 8px solid #aca297;
+					z-index: 1000; 
+				
+					@include box-shadow( #cac4bb 0 1px 0 );
+					@include rotate(-45deg);
+					
+				}
+			}
+		}
+
+		&:hover {
+			& > ul { display: block; }
+		}
+	}
+
+
+}
+
+/* --- Header ------------------------------- */
+
+#main article {
+
+	padding-bottom: 2em; 
+
+}
